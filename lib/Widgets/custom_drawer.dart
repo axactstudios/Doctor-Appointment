@@ -6,8 +6,8 @@ import 'package:getflutter/components/avatar/gf_avatar.dart';
 import 'package:getflutter/components/drawer/gf_drawer.dart';
 import 'package:doctorAppointment/Screens/FirstScreen.dart';
 import 'package:doctorAppointment/style/theme.dart' as Theme;
-import 'package:doctorAppointment/main.dart';
 import 'package:doctorAppointment/ui/login_page.dart';
+import 'package:doctorAppointment/Screens/allAppointmentsMain.dart';
 
 class CustomDrawer extends StatefulWidget {
   @override
@@ -165,10 +165,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
             ),
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => YourDogs()),
-              // );
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AppointmentMainPage(),
+                  ));
             },
           ),
           Container(
