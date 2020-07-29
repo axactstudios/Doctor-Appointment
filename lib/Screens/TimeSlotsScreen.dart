@@ -1,20 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:doctorAppointment/Classes/TimeSlotsData.dart';
+import 'package:doctorAppointment/Classes/Doc_data.dart';
 import 'package:doctorAppointment/Widgets/TimeSlotsCard.dart';
 import 'package:doctorAppointment/Widgets/appbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TimeSlots extends StatefulWidget {
+class TimeSlotsScreen extends StatefulWidget {
   @override
-  _TimeSlotsState createState() => _TimeSlotsState();
+  _TimeSlotsScreenState createState() => _TimeSlotsScreenState();
 }
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 String uid;
+Docpro newdp = new Docpro();
 
-class _TimeSlotsState extends State<TimeSlots> with TickerProviderStateMixin {
+class _TimeSlotsScreenState extends State<TimeSlotsScreen>
+    with TickerProviderStateMixin {
   int number = 0;
   int max = 10;
   FirebaseUser user;
@@ -26,14 +28,53 @@ class _TimeSlotsState extends State<TimeSlots> with TickerProviderStateMixin {
   }
 
   final databaseReference = Firestore.instance;
+  final docdatabaseReference = Firestore.instance;
   TextEditingController taskFromInputController;
   TextEditingController taskToInputController;
-  List<TimeSlotsData> timeSlots;
+
+  void getData() async {
+    //newdp.clear();
+    await docdatabaseReference
+        .collection("Doctors")
+        .getDocuments()
+        .then((QuerySnapshot snapshot) {
+      snapshot.documents.forEach((doc) async {
+        //Array of all TimeSlots
+        List<TimeSlots> timeArr = new List<TimeSlots>();
+
+        List.from(doc["TimeSlots"]).forEach((element) async {
+          TimeSlots newTime = TimeSlots(
+            from: element['From'],
+            to: element['To'],
+            available: element['Available'],
+          );
+          await timeArr.add(newTime);
+        });
+
+        if (doc["ID"] == user.uid) {
+          newdp.address = await doc['address'];
+          newdp.imageUrl = 'images/Doc2.png';
+          newdp.name = await doc['name'];
+          newdp.specs = await doc['specs'];
+          newdp.degree = await doc['degree'];
+          newdp.cost = await int.parse(doc['cost']);
+          newdp.slots = timeArr;
+          newdp.docId = await doc['ID'];
+          print('---------DOC ID ${newdp.docId}------------');
+
+          print("doc added");
+        }
+      });
+    });
+    setState(() {
+      //print(docpros.length.toString());
+    });
+  }
 
   @override
   void initState() {
     getUser();
-    //getSlots();
+    getData();
     taskFromInputController = new TextEditingController();
     taskToInputController = new TextEditingController();
     super.initState();
@@ -57,20 +98,14 @@ class _TimeSlotsState extends State<TimeSlots> with TickerProviderStateMixin {
                 case ConnectionState.waiting:
                   return new Text('Loading...');
                 default:
-                  snapshot.data.documents.map((DocumentSnapshot document) {
-                    List.from(document['TimeSlots']).forEach((element) {
-                      timeSlots.add(TimeSlotsData.fromMap(element));
-                      print(timeSlots);
-                    });
-                  });
                   return new ListView.builder(
-                    //itemCount: timeSlots.length,
+                    itemCount: newdp.slots.length,
                     itemBuilder: (context, index) {
                       return TimeSlotsCard(
-                        timeSlot: TimeSlotsData(
-                          (timeSlots[index]).from,
-                          (timeSlots[index]).to,
-                          (timeSlots[index]).available,
+                        timeSlot: TimeSlots(
+                          from: (newdp.slots[index]).from,
+                          to: (newdp.slots[index]).to,
+                          available: (newdp.slots[index]).available,
                         ),
                       );
                     },
@@ -128,7 +163,8 @@ class _TimeSlotsState extends State<TimeSlots> with TickerProviderStateMixin {
                       .add({
                         "TimeSlots": [
                           taskFromInputController.text,
-                          taskToInputController.text
+                          taskToInputController.text,
+                          "Yes"
                         ],
                       })
                       .then((result) => {

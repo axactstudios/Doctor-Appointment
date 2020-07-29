@@ -1,10 +1,10 @@
-import 'package:doctorAppointment/Classes/TimeSlotsData.dart';
+import 'package:doctorAppointment/Classes/Doc_data.dart';
 import 'package:flutter/material.dart';
 
 class TimeSlotsCard extends StatelessWidget {
   TimeSlotsCard({@required this.timeSlot});
 
-  final TimeSlotsData timeSlot;
+  final TimeSlots timeSlot;
 
   @override
   Widget build(BuildContext context) {

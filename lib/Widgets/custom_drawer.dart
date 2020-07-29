@@ -1,4 +1,4 @@
-import 'package:doctorAppointment/Screens/TimeSlots.dart';
+import 'package:doctorAppointment/Screens/TimeSlotsScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -143,7 +143,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TimeSlots(),
+                    builder: (context) => TimeSlotsScreen(),
                   ));
             },
           ),
