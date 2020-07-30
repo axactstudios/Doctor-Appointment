@@ -39,8 +39,8 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
         .getDocuments()
         .then((QuerySnapshot snapshot) {
       snapshot.documents.forEach((doc) async {
-        //Array of all TimeSlots
         List<TimeSlots> timeArr = new List<TimeSlots>();
+        //Array of all TimeSlots
 
         List.from(doc["TimeSlots"]).forEach((element) async {
           TimeSlots newTime = TimeSlots(
@@ -155,17 +155,20 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
               }),
           FlatButton(
               child: Text('Add'),
-              onPressed: () {
+              onPressed: () async {
                 if (taskFromInputController.text.isNotEmpty &&
                     taskToInputController.text.isNotEmpty) {
-                  Firestore.instance
+                  await Firestore.instance
                       .collection('Doctors')
-                      .add({
-                        "TimeSlots": [
-                          taskFromInputController.text,
-                          taskToInputController.text,
-                          "Yes"
-                        ],
+                      .document(user.uid)
+                      .updateData({
+                        'TimeSlots': FieldValue.arrayUnion([
+                          {
+                            'Available': 'Yes',
+                            'From': taskFromInputController.text,
+                            'To': taskToInputController.text
+                          }
+                        ])
                       })
                       .then((result) => {
                             Navigator.pop(context),
@@ -173,6 +176,9 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
                             taskToInputController.clear(),
                           })
                       .catchError((err) => print(err));
+                  setState(() {
+                    initState();
+                  });
                 }
               })
         ],
