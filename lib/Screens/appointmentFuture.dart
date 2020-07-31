@@ -25,13 +25,30 @@ class _FutureAppointmentState extends State<FutureAppointment> {
   List<Widget> futAppointsList = [];
   List fuAppList = [];
   void getData() async {
+    TimeOfDay yourTime;
+    TimeOfDay nowTime = TimeOfDay.now();
+    double _doubleNowTime =
+        nowTime.hour.toDouble() + (nowTime.minute.toDouble() / 60);
+    //print(_hr + _minute);
+
     fuAppList.clear();
     await databaseReference
         .collection("DoctorAppointment")
         .getDocuments()
         .then((QuerySnapshot snapshot) {
       snapshot.documents.forEach((f) {
-        if (uid == f['doctorUID'] && f['status'] == "Booked") {
+        yourTime = TimeOfDay(
+            hour: int.parse(f['from'].split(":")[0]),
+            minute: int.parse(f['from'].split(":")[1]));
+        double _doubleyourTime =
+            yourTime.hour.toDouble() + (yourTime.minute.toDouble() / 60);
+        double _timeDiff = _doubleyourTime - _doubleNowTime;
+        int _hr = _timeDiff.truncate();
+        double _minute = (_timeDiff - _timeDiff.truncate()) * 60;
+
+        if (uid == f['doctorUID'] &&
+            f['status'] == "Booked" &&
+            ((_hr == 0 && _minute > 0) || (_hr > 0))) {
           fuAppList.add(AppointmentData(
               f['bookingTime'],
               f['doctorUID'],
