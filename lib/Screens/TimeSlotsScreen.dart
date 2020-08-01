@@ -5,6 +5,8 @@ import 'package:doctorAppointment/Widgets/appbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class TimeSlotsScreen extends StatefulWidget {
   @override
@@ -17,6 +19,8 @@ Docpro newdp = new Docpro();
 
 class _TimeSlotsScreenState extends State<TimeSlotsScreen>
     with TickerProviderStateMixin {
+  ScrollController scrollController;
+  bool _dialVisible = true;
   int number = 0;
   int max = 10;
   FirebaseUser user;
@@ -71,12 +75,30 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
     });
   }
 
+  void setDialVisible(bool value) {
+    setState(() {
+      _dialVisible = value;
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    // animationController.dispose() instead of your controller.dispose
+  }
+
   @override
   void initState() {
     getUser();
     getData();
     taskFromInputController = new TextEditingController();
     taskToInputController = new TextEditingController();
+    scrollController = ScrollController()
+      ..addListener(() {
+        setDialVisible(scrollController.position.userScrollDirection ==
+            ScrollDirection.forward);
+      });
     super.initState();
   }
 
@@ -115,10 +137,107 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _showDialog,
-        tooltip: 'Add',
-        child: Icon(Icons.add),
+      floatingActionButton: SpeedDial(
+        // both default to 16
+        marginRight: 18,
+        marginBottom: 20,
+        animatedIcon: AnimatedIcons.menu_close,
+        animatedIconTheme: IconThemeData(size: 22.0),
+        // this is ignored if animatedIcon is non null
+        // child: Icon(Icons.add),
+        visible: _dialVisible,
+        // If true user is forced to close dial manually
+        // by tapping main button and overlay is not rendered.
+        closeManually: false,
+        curve: Curves.bounceIn,
+        overlayColor: Colors.black,
+        overlayOpacity: 0.5,
+        onOpen: () => print('OPENING DIAL'),
+        onClose: () => print('DIAL CLOSED'),
+        tooltip: 'Speed Dial',
+        heroTag: 'speed-dial-hero-tag',
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 8.0,
+        shape: CircleBorder(),
+        children: [
+          SpeedDialChild(
+              child: Icon(Icons.remove),
+              backgroundColor: Colors.red,
+              label: 'Remove',
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: () => _showRemDialog()),
+          SpeedDialChild(
+            child: Icon(Icons.add),
+            backgroundColor: Colors.blue,
+            label: 'Add',
+            labelStyle: TextStyle(fontSize: 18.0),
+            onTap: () => _showDialog(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _showRemDialog() async {
+    await showDialog<String>(
+      context: context,
+      child: AlertDialog(
+        contentPadding: const EdgeInsets.all(16.0),
+        content: Container(
+          height: 170,
+          child: Column(
+            children: <Widget>[
+              Text("Please fill the details to remove a slot"),
+              TextField(
+                autofocus: true,
+                decoration: InputDecoration(labelText: 'From'),
+                controller: taskFromInputController,
+              ),
+              TextField(
+                decoration: InputDecoration(labelText: 'To'),
+                controller: taskToInputController,
+              ),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          FlatButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                taskFromInputController.clear();
+                taskToInputController.clear();
+                Navigator.pop(context);
+              }),
+          FlatButton(
+              child: Text('Remove'),
+              onPressed: () async {
+                if (taskFromInputController.text.isNotEmpty &&
+                    taskToInputController.text.isNotEmpty) {
+                  await Firestore.instance
+                      .collection('Doctors')
+                      .document(user.uid)
+                      .updateData({
+                        'TimeSlots': FieldValue.arrayRemove([
+                          {
+                            'Available': 'Yes',
+                            'From': taskFromInputController.text,
+                            'To': taskToInputController.text
+                          }
+                        ])
+                      })
+                      .then((result) => {
+                            Navigator.pop(context),
+                            taskFromInputController.clear(),
+                            taskToInputController.clear(),
+                          })
+                      .catchError((err) => print(err));
+                  setState(() {
+                    initState();
+                  });
+                }
+              })
+        ],
       ),
     );
   }
