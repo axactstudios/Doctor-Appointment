@@ -207,7 +207,13 @@ class _DoctorBasicDetailsState extends State<DoctorBasicDetails> {
                           'degree': myController2.text,
                           'specs': myController3.text,
                           'ID': user.uid,
-                          'TimeSlots': null,
+                          'TimeSlots': [
+                            {
+                              "Available": "No",
+                              "From": "From: 00:00",
+                              "To": "To: 00:00",
+                            }
+                          ],
                           "cost": int.parse(myController4.text),
                         });
                         Navigator.pushReplacement(

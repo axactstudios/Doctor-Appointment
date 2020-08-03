@@ -45,6 +45,7 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
       snapshot.documents.forEach((doc) async {
         List<TimeSlots> timeArr = new List<TimeSlots>();
         //Array of all TimeSlots
+        // print(doc["TimeSlots"]);
 
         List.from(doc["TimeSlots"]).forEach((element) async {
           TimeSlots newTime = TimeSlots(
@@ -61,7 +62,7 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
           newdp.name = await doc['name'];
           newdp.specs = await doc['specs'];
           newdp.degree = await doc['degree'];
-          newdp.cost = await int.parse(doc['cost']);
+          newdp.cost = await doc['cost'];
           newdp.slots = timeArr;
           newdp.docId = await doc['ID'];
           print('---------DOC ID ${newdp.docId}------------');
