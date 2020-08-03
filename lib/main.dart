@@ -2,7 +2,6 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:doctorAppointment/Screens/FirstScreen.dart';
 import 'package:doctorAppointment/Screens/SplashScreen.dart';
 import 'package:doctorAppointment/Screens/home_screen.dart';
 import 'package:doctorAppointment/style/theme.dart' as Theme;

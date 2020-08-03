@@ -1,10 +1,10 @@
 import 'package:doctorAppointment/Screens/TimeSlotsScreen.dart';
+import 'package:doctorAppointment/Screens/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/components/avatar/gf_avatar.dart';
 import 'package:getflutter/components/drawer/gf_drawer.dart';
-import 'package:doctorAppointment/Screens/FirstScreen.dart';
 import 'package:doctorAppointment/style/theme.dart' as Theme;
 import 'package:doctorAppointment/ui/login_page.dart';
 import 'package:doctorAppointment/Screens/allAppointmentsMain.dart';
@@ -81,25 +81,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 )
               ],
             ),
-          ),
-          ListTile(
-            title: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
-              child: Text(
-                'Main Home',
-                style: TextStyle(
-                    fontSize: 24,
-                    fontFamily: 'nunito',
-                    fontWeight: FontWeight.w600),
-              ),
-            ),
-            onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => FirstScreen()),
-              );
-            },
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),

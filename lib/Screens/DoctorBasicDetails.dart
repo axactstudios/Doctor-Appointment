@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:doctorAppointment/Screens/FirstScreen.dart';
 import 'package:doctorAppointment/Classes/Constants.dart';
+import 'home_screen.dart';
 
 class DoctorBasicDetails extends StatefulWidget {
   final String phno;
@@ -207,13 +207,12 @@ class _DoctorBasicDetailsState extends State<DoctorBasicDetails> {
                           'degree': myController2.text,
                           'specs': myController3.text,
                           'ID': user.uid,
-                          'TimeSlots': "",
-                          "cost": myController4.text,
+                          'TimeSlots': null,
+                          "cost": int.parse(myController4.text),
                         });
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => FirstScreen()),
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
                         );
                       }
                     },

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doctorAppointment/Screens/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:doctorAppointment/Screens/FirstScreen.dart';
 import 'package:doctorAppointment/Screens/DoctorBasicDetails.dart';
 import 'package:doctorAppointment/Classes/Constants.dart';
 import 'package:doctorAppointment/style/theme.dart' as Theme;
@@ -48,7 +48,7 @@ class _SignedInState extends State<SignedIn> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => FirstScreen(),
+            builder: (context) => HomeScreen(),
           ),
         );
       } else {
