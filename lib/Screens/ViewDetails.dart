@@ -107,31 +107,45 @@ class _ViewDetailsState extends State<ViewDetails>
                       height: pHeight * 0.02,
                     ),
                     Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       elevation: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: pWidth * 0.85,
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                'Name :',
-                                style: TextStyle(
-                                    color: MyColors.loginGradientEnd,
-                                    fontFamily: 'Cabin',
-                                    fontSize: pHeight * 0.025),
-                              ),
-                              SizedBox(
-                                width: pWidth * 0.05,
-                              ),
-                              Text(
-                                newdp.name,
-                                style: TextStyle(
-                                    color: MyColors.loginGradientEnd,
-                                    fontFamily: 'Cabin',
-                                    fontSize: pHeight * 0.025),
-                              ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: new LinearGradient(
+                            colors: [
+                              MyColors.loginGradientStart,
+                              MyColors.loginGradientEnd
                             ],
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: pWidth * 0.85,
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  'Name :',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Cabin',
+                                      fontSize: pHeight * 0.025),
+                                ),
+                                SizedBox(
+                                  width: pWidth * 0.05,
+                                ),
+                                Text(
+                                  newdp.name,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Cabin',
+                                      fontSize: pHeight * 0.025),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -140,31 +154,45 @@ class _ViewDetailsState extends State<ViewDetails>
                       height: pHeight * 0.02,
                     ),
                     Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       elevation: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: pWidth * 0.85,
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                'Degree :',
-                                style: TextStyle(
-                                    color: MyColors.loginGradientEnd,
-                                    fontFamily: 'Cabin',
-                                    fontSize: pHeight * 0.025),
-                              ),
-                              SizedBox(
-                                width: pWidth * 0.05,
-                              ),
-                              Text(
-                                newdp.degree,
-                                style: TextStyle(
-                                    color: MyColors.loginGradientEnd,
-                                    fontFamily: 'Cabin',
-                                    fontSize: pHeight * 0.025),
-                              ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: new LinearGradient(
+                            colors: [
+                              MyColors.loginGradientStart,
+                              MyColors.loginGradientEnd
                             ],
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: pWidth * 0.85,
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  'Degree :',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Cabin',
+                                      fontSize: pHeight * 0.025),
+                                ),
+                                SizedBox(
+                                  width: pWidth * 0.05,
+                                ),
+                                Text(
+                                  newdp.degree,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Cabin',
+                                      fontSize: pHeight * 0.025),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -173,31 +201,45 @@ class _ViewDetailsState extends State<ViewDetails>
                       height: pHeight * 0.02,
                     ),
                     Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       elevation: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: pWidth * 0.85,
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                'Specialization :',
-                                style: TextStyle(
-                                    color: MyColors.loginGradientEnd,
-                                    fontFamily: 'Cabin',
-                                    fontSize: pHeight * 0.025),
-                              ),
-                              SizedBox(
-                                width: pWidth * 0.05,
-                              ),
-                              Text(
-                                newdp.specs,
-                                style: TextStyle(
-                                    color: MyColors.loginGradientEnd,
-                                    fontFamily: 'Cabin',
-                                    fontSize: pHeight * 0.025),
-                              ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: new LinearGradient(
+                            colors: [
+                              MyColors.loginGradientStart,
+                              MyColors.loginGradientEnd
                             ],
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: pWidth * 0.85,
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  'Specialization :',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Cabin',
+                                      fontSize: pHeight * 0.025),
+                                ),
+                                SizedBox(
+                                  width: pWidth * 0.05,
+                                ),
+                                Text(
+                                  newdp.specs,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Cabin',
+                                      fontSize: pHeight * 0.025),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -206,31 +248,45 @@ class _ViewDetailsState extends State<ViewDetails>
                       height: pHeight * 0.02,
                     ),
                     Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       elevation: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: pWidth * 0.85,
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                'Address :',
-                                style: TextStyle(
-                                    color: MyColors.loginGradientEnd,
-                                    fontFamily: 'Cabin',
-                                    fontSize: pHeight * 0.025),
-                              ),
-                              SizedBox(
-                                width: pWidth * 0.05,
-                              ),
-                              Text(
-                                newdp.address,
-                                style: TextStyle(
-                                    color: MyColors.loginGradientEnd,
-                                    fontFamily: 'Cabin',
-                                    fontSize: pHeight * 0.025),
-                              ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: new LinearGradient(
+                            colors: [
+                              MyColors.loginGradientStart,
+                              MyColors.loginGradientEnd
                             ],
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: pWidth * 0.85,
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  'Address :',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Cabin',
+                                      fontSize: pHeight * 0.025),
+                                ),
+                                SizedBox(
+                                  width: pWidth * 0.05,
+                                ),
+                                Text(
+                                  newdp.address,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Cabin',
+                                      fontSize: pHeight * 0.025),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -239,31 +295,45 @@ class _ViewDetailsState extends State<ViewDetails>
                       height: pHeight * 0.02,
                     ),
                     Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       elevation: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: pWidth * 0.85,
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                'Cost :',
-                                style: TextStyle(
-                                    color: MyColors.loginGradientEnd,
-                                    fontFamily: 'Cabin',
-                                    fontSize: pHeight * 0.025),
-                              ),
-                              SizedBox(
-                                width: pWidth * 0.05,
-                              ),
-                              Text(
-                                newdp.cost.toString(),
-                                style: TextStyle(
-                                    color: MyColors.loginGradientEnd,
-                                    fontFamily: 'Cabin',
-                                    fontSize: pHeight * 0.025),
-                              ),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: new LinearGradient(
+                            colors: [
+                              MyColors.loginGradientStart,
+                              MyColors.loginGradientEnd
                             ],
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: pWidth * 0.85,
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  'Cost :',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Cabin',
+                                      fontSize: pHeight * 0.025),
+                                ),
+                                SizedBox(
+                                  width: pWidth * 0.05,
+                                ),
+                                Text(
+                                  newdp.cost.toString(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Cabin',
+                                      fontSize: pHeight * 0.025),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

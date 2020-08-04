@@ -1,5 +1,6 @@
 import 'package:doctorAppointment/Classes/Doc_data.dart';
 import 'package:doctorAppointment/style/theme.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TimeSlotsCard extends StatelessWidget {
@@ -13,8 +14,18 @@ class TimeSlotsCard extends StatelessWidget {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Card(
+      margin: EdgeInsets.only(top: 10),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       elevation: 4,
       child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          gradient: new LinearGradient(
+            colors: [MyColors.loginGradientStart, MyColors.loginGradientEnd],
+          ),
+        ),
         padding: const EdgeInsets.only(top: 5.0),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -26,7 +37,7 @@ class TimeSlotsCard extends StatelessWidget {
                 style: TextStyle(
                     fontFamily: 'Cabin',
                     fontSize: pHeight * 0.025,
-                    color: MyColors.loginGradientEnd),
+                    color: Colors.white),
               ),
               SizedBox(
                 height: pHeight * 0.01,
@@ -36,14 +47,14 @@ class TimeSlotsCard extends StatelessWidget {
                 style: TextStyle(
                     fontFamily: 'Cabin',
                     fontSize: pHeight * 0.022,
-                    color: MyColors.loginGradientEnd),
+                    color: CupertinoColors.white),
               ),
               Text(
                 'To ${timeSlot.to}',
                 style: TextStyle(
                     fontFamily: 'Cabin',
                     fontSize: pHeight * 0.022,
-                    color: MyColors.loginGradientEnd),
+                    color: Colors.white),
               ),
               //Text(to),
               // FlatButton(
