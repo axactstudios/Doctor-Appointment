@@ -72,27 +72,38 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   elevation: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.account_circle,
-                          size: pHeight * 0.07,
-                          color: MyColors.loginGradientEnd,
-                        ),
-                        SizedBox(
-                          height: pHeight * 0.01,
-                        ),
-                        Text(
-                          'View Profile',
-                          style: TextStyle(
-                            color: MyColors.loginGradientEnd,
-                            fontSize: pHeight * 0.025,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: new LinearGradient(
+                        colors: [
+                          MyColors.loginGradientStart,
+                          MyColors.loginGradientEnd
+                        ],
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.account_circle,
+                            size: pHeight * 0.07,
+                            color: Colors.white,
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            height: pHeight * 0.01,
+                          ),
+                          Text(
+                            'View Profile',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: pHeight * 0.025,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -110,27 +121,38 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   elevation: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.notifications,
-                          size: pHeight * 0.07,
-                          color: MyColors.loginGradientEnd,
-                        ),
-                        SizedBox(
-                          height: pHeight * 0.01,
-                        ),
-                        Text(
-                          'New Requests',
-                          style: TextStyle(
-                            color: MyColors.loginGradientEnd,
-                            fontSize: pHeight * 0.025,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: new LinearGradient(
+                        colors: [
+                          MyColors.loginGradientStart,
+                          MyColors.loginGradientEnd
+                        ],
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.notifications,
+                            size: pHeight * 0.07,
+                            color: Colors.white,
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            height: pHeight * 0.01,
+                          ),
+                          Text(
+                            'New Requests',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: pHeight * 0.025,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -156,27 +178,38 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   elevation: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.alarm,
-                          size: pHeight * 0.07,
-                          color: MyColors.loginGradientEnd,
-                        ),
-                        SizedBox(
-                          height: pHeight * 0.01,
-                        ),
-                        Text(
-                          'Bookings',
-                          style: TextStyle(
-                            color: MyColors.loginGradientEnd,
-                            fontSize: pHeight * 0.025,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: new LinearGradient(
+                        colors: [
+                          MyColors.loginGradientStart,
+                          MyColors.loginGradientEnd
+                        ],
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.alarm,
+                            size: pHeight * 0.07,
+                            color: Colors.white,
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            height: pHeight * 0.01,
+                          ),
+                          Text(
+                            'Bookings',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: pHeight * 0.025,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -202,27 +235,38 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   elevation: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.update,
-                          size: pHeight * 0.07,
-                          color: MyColors.loginGradientEnd,
-                        ),
-                        SizedBox(
-                          height: pHeight * 0.01,
-                        ),
-                        Text(
-                          'Update Slots',
-                          style: TextStyle(
-                            color: MyColors.loginGradientEnd,
-                            fontSize: pHeight * 0.025,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      gradient: new LinearGradient(
+                        colors: [
+                          MyColors.loginGradientStart,
+                          MyColors.loginGradientEnd
+                        ],
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.update,
+                            size: pHeight * 0.07,
+                            color: Colors.white,
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            height: pHeight * 0.01,
+                          ),
+                          Text(
+                            'Update Slots',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: pHeight * 0.025,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
