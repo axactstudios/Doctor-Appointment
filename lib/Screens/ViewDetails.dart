@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctorAppointment/Classes/Doc_data.dart';
+import 'package:doctorAppointment/Widgets/appbar.dart';
+import 'package:doctorAppointment/style/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -80,9 +82,7 @@ class _ViewDetailsState extends State<ViewDetails>
     final pWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Profile"),
-      ),
+      appBar: CustomAppBar(),
       body: Container(
         height: pHeight,
         width: pWidth,
@@ -98,7 +98,10 @@ class _ViewDetailsState extends State<ViewDetails>
                     Text(
                       'Your Profile',
                       style: TextStyle(
-                          fontFamily: 'Cabin', fontSize: pHeight * 0.035),
+                        fontFamily: 'Cabin',
+                        fontSize: pHeight * 0.035,
+                        color: MyColors.loginGradientEnd,
+                      ),
                     ),
                     SizedBox(
                       height: pHeight * 0.02,
@@ -114,7 +117,7 @@ class _ViewDetailsState extends State<ViewDetails>
                               Text(
                                 'Name :',
                                 style: TextStyle(
-                                    color: Colors.black.withOpacity(0.65),
+                                    color: MyColors.loginGradientEnd,
                                     fontFamily: 'Cabin',
                                     fontSize: pHeight * 0.025),
                               ),
@@ -124,7 +127,7 @@ class _ViewDetailsState extends State<ViewDetails>
                               Text(
                                 newdp.name,
                                 style: TextStyle(
-                                    color: Colors.black.withOpacity(0.65),
+                                    color: MyColors.loginGradientEnd,
                                     fontFamily: 'Cabin',
                                     fontSize: pHeight * 0.025),
                               ),
@@ -147,7 +150,7 @@ class _ViewDetailsState extends State<ViewDetails>
                               Text(
                                 'Degree :',
                                 style: TextStyle(
-                                    color: Colors.black.withOpacity(0.65),
+                                    color: MyColors.loginGradientEnd,
                                     fontFamily: 'Cabin',
                                     fontSize: pHeight * 0.025),
                               ),
@@ -157,7 +160,7 @@ class _ViewDetailsState extends State<ViewDetails>
                               Text(
                                 newdp.degree,
                                 style: TextStyle(
-                                    color: Colors.black.withOpacity(0.65),
+                                    color: MyColors.loginGradientEnd,
                                     fontFamily: 'Cabin',
                                     fontSize: pHeight * 0.025),
                               ),
@@ -180,7 +183,7 @@ class _ViewDetailsState extends State<ViewDetails>
                               Text(
                                 'Specialization :',
                                 style: TextStyle(
-                                    color: Colors.black.withOpacity(0.65),
+                                    color: MyColors.loginGradientEnd,
                                     fontFamily: 'Cabin',
                                     fontSize: pHeight * 0.025),
                               ),
@@ -190,7 +193,7 @@ class _ViewDetailsState extends State<ViewDetails>
                               Text(
                                 newdp.specs,
                                 style: TextStyle(
-                                    color: Colors.black.withOpacity(0.65),
+                                    color: MyColors.loginGradientEnd,
                                     fontFamily: 'Cabin',
                                     fontSize: pHeight * 0.025),
                               ),
@@ -213,7 +216,7 @@ class _ViewDetailsState extends State<ViewDetails>
                               Text(
                                 'Address :',
                                 style: TextStyle(
-                                    color: Colors.black.withOpacity(0.65),
+                                    color: MyColors.loginGradientEnd,
                                     fontFamily: 'Cabin',
                                     fontSize: pHeight * 0.025),
                               ),
@@ -223,7 +226,7 @@ class _ViewDetailsState extends State<ViewDetails>
                               Text(
                                 newdp.address,
                                 style: TextStyle(
-                                    color: Colors.black.withOpacity(0.65),
+                                    color: MyColors.loginGradientEnd,
                                     fontFamily: 'Cabin',
                                     fontSize: pHeight * 0.025),
                               ),
@@ -246,7 +249,7 @@ class _ViewDetailsState extends State<ViewDetails>
                               Text(
                                 'Cost :',
                                 style: TextStyle(
-                                    color: Colors.black.withOpacity(0.65),
+                                    color: MyColors.loginGradientEnd,
                                     fontFamily: 'Cabin',
                                     fontSize: pHeight * 0.025),
                               ),
@@ -256,7 +259,7 @@ class _ViewDetailsState extends State<ViewDetails>
                               Text(
                                 newdp.cost.toString(),
                                 style: TextStyle(
-                                    color: Colors.black.withOpacity(0.65),
+                                    color: MyColors.loginGradientEnd,
                                     fontFamily: 'Cabin',
                                     fontSize: pHeight * 0.025),
                               ),

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctorAppointment/Classes/Doc_data.dart';
 import 'package:doctorAppointment/Screens/DoctorBasicDetails.dart';
 import 'package:doctorAppointment/Screens/ViewDetails.dart';
+import 'package:doctorAppointment/style/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:doctorAppointment/Widgets/custom_drawer.dart';
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     final pWidth = MediaQuery.of(context).size.width;
     return new Scaffold(
       drawer: CustomDrawer(),
-      backgroundColor: Color(0xFFEFF7F6),
+      backgroundColor: Colors.white,
       appBar: CustomAppBar(),
       body: Container(
         width: pWidth,
@@ -70,7 +71,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  color: Colors.pink,
                   elevation: 4,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         Icon(
                           Icons.account_circle,
                           size: pHeight * 0.07,
-                          color: Colors.white,
+                          color: MyColors.loginGradientEnd,
                         ),
                         SizedBox(
                           height: pHeight * 0.01,
@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         Text(
                           'View Profile',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: MyColors.loginGradientEnd,
                             fontSize: pHeight * 0.025,
                           ),
                         ),
@@ -109,7 +109,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  color: Colors.blue,
                   elevation: 4,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -119,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         Icon(
                           Icons.notifications,
                           size: pHeight * 0.07,
-                          color: Colors.white,
+                          color: MyColors.loginGradientEnd,
                         ),
                         SizedBox(
                           height: pHeight * 0.01,
@@ -127,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         Text(
                           'New Requests',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: MyColors.loginGradientEnd,
                             fontSize: pHeight * 0.025,
                           ),
                         ),
@@ -156,7 +155,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  color: Colors.green,
                   elevation: 4,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -166,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         Icon(
                           Icons.alarm,
                           size: pHeight * 0.07,
-                          color: Colors.white,
+                          color: MyColors.loginGradientEnd,
                         ),
                         SizedBox(
                           height: pHeight * 0.01,
@@ -174,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         Text(
                           'Bookings',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: MyColors.loginGradientEnd,
                             fontSize: pHeight * 0.025,
                           ),
                         ),
@@ -203,7 +201,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  color: Colors.red,
                   elevation: 4,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -213,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         Icon(
                           Icons.update,
                           size: pHeight * 0.07,
-                          color: Colors.white,
+                          color: MyColors.loginGradientEnd,
                         ),
                         SizedBox(
                           height: pHeight * 0.01,
@@ -221,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         Text(
                           'Update Slots',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: MyColors.loginGradientEnd,
                             fontSize: pHeight * 0.025,
                           ),
                         ),
