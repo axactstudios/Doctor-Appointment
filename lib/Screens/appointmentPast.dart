@@ -149,7 +149,7 @@ class _PastAppointmentState extends State<PastAppointment> {
                                                 child: Icon(
                                                   Icons.people,
                                                   color: Colors.deepPurple,
-                                                  size: 30,
+                                                  size: height * 0.025,
                                                 ),
                                               ),
                                               SizedBox(
@@ -165,7 +165,8 @@ class _PastAppointmentState extends State<PastAppointment> {
                                                             FontWeight.bold,
                                                         color:
                                                             Colors.deepPurple,
-                                                        fontSize: 20),
+                                                        fontSize:
+                                                            height * 0.02),
                                                     children: <TextSpan>[
                                                       TextSpan(
                                                           text: '\n' +
@@ -173,7 +174,8 @@ class _PastAppointmentState extends State<PastAppointment> {
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.purple,
-                                                              fontSize: 15,
+                                                              fontSize: height *
+                                                                  0.015,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold)),
@@ -191,7 +193,8 @@ class _PastAppointmentState extends State<PastAppointment> {
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         color: Colors.blue,
-                                                        fontSize: 20),
+                                                        fontSize:
+                                                            height * 0.02),
                                                     children: <TextSpan>[
                                                       TextSpan(
                                                           text: '\n' +
@@ -199,7 +202,8 @@ class _PastAppointmentState extends State<PastAppointment> {
                                                           style: TextStyle(
                                                               color: Colors
                                                                   .lightBlue,
-                                                              fontSize: 15,
+                                                              fontSize: height *
+                                                                  0.015,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold)),
@@ -215,10 +219,10 @@ class _PastAppointmentState extends State<PastAppointment> {
                                                   child: Icon(
                                                     Icons.pets,
                                                     color: Colors.blue,
-                                                    size: 30,
+                                                    size: height * 0.025,
                                                   )),
                                               SizedBox(
-                                                width: 20,
+                                                width: width * 0.01,
                                               ),
                                             ],
                                           ),
@@ -243,7 +247,8 @@ class _PastAppointmentState extends State<PastAppointment> {
                                                           style: TextStyle(
                                                               color: Colors
                                                                   .black87,
-                                                              fontSize: 17,
+                                                              fontSize: height *
+                                                                  0.018,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),
@@ -257,7 +262,9 @@ class _PastAppointmentState extends State<PastAppointment> {
                                                                 fontStyle:
                                                                     FontStyle
                                                                         .italic,
-                                                                fontSize: 14,
+                                                                fontSize:
+                                                                    height *
+                                                                        0.016,
                                                               ),
                                                             ),
                                                           ],
@@ -288,7 +295,8 @@ class _PastAppointmentState extends State<PastAppointment> {
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.green,
-                                                              fontSize: 17,
+                                                              fontSize: height *
+                                                                  0.019,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),

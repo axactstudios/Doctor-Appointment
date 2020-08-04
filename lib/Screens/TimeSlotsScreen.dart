@@ -105,8 +105,10 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
 
   @override
   Widget build(BuildContext context) {
+    final pHeight = MediaQuery.of(context).size.height;
+    final pWidth = MediaQuery.of(context).size.width;
     return new Scaffold(
-      backgroundColor: Color(0xFFEFF7F6),
+      backgroundColor: Colors.white,
       appBar: CustomAppBar(),
       body: Center(
         child: Container(
@@ -125,6 +127,7 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
                     itemCount: newdp.slots.length,
                     itemBuilder: (context, index) {
                       return TimeSlotsCard(
+                        index: index,
                         timeSlot: TimeSlots(
                           from: (newdp.slots[index]).from,
                           to: (newdp.slots[index]).to,

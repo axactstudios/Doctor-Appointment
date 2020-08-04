@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctorAppointment/Classes/Doc_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:doctorAppointment/Widgets/custom_drawer.dart';
-import 'package:doctorAppointment/Widgets/appbar.dart';
 
 class ViewDetails extends StatefulWidget {
   @override
@@ -78,141 +76,198 @@ class _ViewDetailsState extends State<ViewDetails>
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      backgroundColor: Color(0xFFEFF7F6),
+    final pHeight = MediaQuery.of(context).size.height;
+    final pWidth = MediaQuery.of(context).size.width;
+    return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Profile"),
       ),
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-            child: Text(
-              "Your Details",
-              style: TextStyle(
-                fontSize: 22,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    "Name:",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
+      body: Container(
+        height: pHeight,
+        width: pWidth,
+        child: newdp.name == null
+            ? CircularProgressIndicator()
+            : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: pHeight * 0.02,
                     ),
-                  ),
-                  Text(
-                    newdp.name,
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    "Degree:",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
+                    Text(
+                      'Your Profile',
+                      style: TextStyle(
+                          fontFamily: 'Cabin', fontSize: pHeight * 0.035),
                     ),
-                  ),
-                  Text(
-                    newdp.degree,
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    "Specs:",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
+                    SizedBox(
+                      height: pHeight * 0.02,
                     ),
-                  ),
-                  Text(
-                    newdp.specs,
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    "Address:",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
+                    Card(
+                      elevation: 4,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: pWidth * 0.85,
+                          child: Row(
+                            children: <Widget>[
+                              Text(
+                                'Name :',
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.65),
+                                    fontFamily: 'Cabin',
+                                    fontSize: pHeight * 0.025),
+                              ),
+                              SizedBox(
+                                width: pWidth * 0.05,
+                              ),
+                              Text(
+                                newdp.name,
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.65),
+                                    fontFamily: 'Cabin',
+                                    fontSize: pHeight * 0.025),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                  Text(
-                    newdp.address,
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    "Cost:",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
+                    SizedBox(
+                      height: pHeight * 0.02,
                     ),
-                  ),
-                  Text(
-                    newdp.cost.toString(),
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
+                    Card(
+                      elevation: 4,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: pWidth * 0.85,
+                          child: Row(
+                            children: <Widget>[
+                              Text(
+                                'Degree :',
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.65),
+                                    fontFamily: 'Cabin',
+                                    fontSize: pHeight * 0.025),
+                              ),
+                              SizedBox(
+                                width: pWidth * 0.05,
+                              ),
+                              Text(
+                                newdp.degree,
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.65),
+                                    fontFamily: 'Cabin',
+                                    fontSize: pHeight * 0.025),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: pHeight * 0.02,
+                    ),
+                    Card(
+                      elevation: 4,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: pWidth * 0.85,
+                          child: Row(
+                            children: <Widget>[
+                              Text(
+                                'Specialization :',
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.65),
+                                    fontFamily: 'Cabin',
+                                    fontSize: pHeight * 0.025),
+                              ),
+                              SizedBox(
+                                width: pWidth * 0.05,
+                              ),
+                              Text(
+                                newdp.specs,
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.65),
+                                    fontFamily: 'Cabin',
+                                    fontSize: pHeight * 0.025),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: pHeight * 0.02,
+                    ),
+                    Card(
+                      elevation: 4,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: pWidth * 0.85,
+                          child: Row(
+                            children: <Widget>[
+                              Text(
+                                'Address :',
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.65),
+                                    fontFamily: 'Cabin',
+                                    fontSize: pHeight * 0.025),
+                              ),
+                              SizedBox(
+                                width: pWidth * 0.05,
+                              ),
+                              Text(
+                                newdp.address,
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.65),
+                                    fontFamily: 'Cabin',
+                                    fontSize: pHeight * 0.025),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: pHeight * 0.02,
+                    ),
+                    Card(
+                      elevation: 4,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: pWidth * 0.85,
+                          child: Row(
+                            children: <Widget>[
+                              Text(
+                                'Cost :',
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.65),
+                                    fontFamily: 'Cabin',
+                                    fontSize: pHeight * 0.025),
+                              ),
+                              SizedBox(
+                                width: pWidth * 0.05,
+                              ),
+                              Text(
+                                newdp.cost.toString(),
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(0.65),
+                                    fontFamily: 'Cabin',
+                                    fontSize: pHeight * 0.025),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
-        ],
       ),
     );
   }
