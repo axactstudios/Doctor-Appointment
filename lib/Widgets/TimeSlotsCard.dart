@@ -1,4 +1,5 @@
 import 'package:doctorAppointment/Classes/Doc_data.dart';
+import 'package:doctorAppointment/style/theme.dart';
 import 'package:flutter/material.dart';
 
 class TimeSlotsCard extends StatelessWidget {
@@ -22,21 +23,27 @@ class TimeSlotsCard extends StatelessWidget {
             children: <Widget>[
               Text(
                 'Slot ${index + 1}',
-                style:
-                    TextStyle(fontFamily: 'Cabin', fontSize: pHeight * 0.025),
+                style: TextStyle(
+                    fontFamily: 'Cabin',
+                    fontSize: pHeight * 0.025,
+                    color: MyColors.loginGradientEnd),
               ),
               SizedBox(
                 height: pHeight * 0.01,
               ),
               Text(
                 'From ${timeSlot.from}',
-                style:
-                    TextStyle(fontFamily: 'Cabin', fontSize: pHeight * 0.022),
+                style: TextStyle(
+                    fontFamily: 'Cabin',
+                    fontSize: pHeight * 0.022,
+                    color: MyColors.loginGradientEnd),
               ),
               Text(
                 'To ${timeSlot.to}',
-                style:
-                    TextStyle(fontFamily: 'Cabin', fontSize: pHeight * 0.022),
+                style: TextStyle(
+                    fontFamily: 'Cabin',
+                    fontSize: pHeight * 0.022,
+                    color: MyColors.loginGradientEnd),
               ),
               //Text(to),
               // FlatButton(

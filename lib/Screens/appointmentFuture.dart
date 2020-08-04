@@ -118,10 +118,10 @@ class _FutureAppointmentState extends State<FutureAppointment> {
               itemBuilder: (BuildContext, index) {
                 var item = fuAppList[index];
                 return Padding(
-                  padding: const EdgeInsets.all(6.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Container(
                     padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    height: 250,
+                    height: 200,
                     width: double.maxFinite,
                     child: Card(
                       elevation: 5,
@@ -152,7 +152,7 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                 child: Icon(
                                                   Icons.people,
                                                   color: Colors.deepPurple,
-                                                  size: 30,
+                                                  size: height * 0.025,
                                                 ),
                                               ),
                                               SizedBox(
@@ -168,7 +168,8 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                             FontWeight.bold,
                                                         color:
                                                             Colors.deepPurple,
-                                                        fontSize: 20),
+                                                        fontSize:
+                                                            height * 0.02),
                                                     children: <TextSpan>[
                                                       TextSpan(
                                                           text: '\n' +
@@ -176,7 +177,8 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.purple,
-                                                              fontSize: 15,
+                                                              fontSize: height *
+                                                                  0.015,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold)),
@@ -194,7 +196,8 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         color: Colors.blue,
-                                                        fontSize: 20),
+                                                        fontSize:
+                                                            height * 0.02),
                                                     children: <TextSpan>[
                                                       TextSpan(
                                                           text: '\n' +
@@ -202,7 +205,8 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                           style: TextStyle(
                                                               color: Colors
                                                                   .lightBlue,
-                                                              fontSize: 15,
+                                                              fontSize: height *
+                                                                  0.015,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold)),
@@ -218,10 +222,10 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                   child: Icon(
                                                     Icons.pets,
                                                     color: Colors.blue,
-                                                    size: 30,
+                                                    size: height * 0.025,
                                                   )),
                                               SizedBox(
-                                                width: 20,
+                                                width: width * 0.01,
                                               ),
                                             ],
                                           ),
@@ -246,7 +250,8 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                           style: TextStyle(
                                                               color: Colors
                                                                   .black87,
-                                                              fontSize: 17,
+                                                              fontSize: height *
+                                                                  0.018,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),
@@ -260,7 +265,9 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                                 fontStyle:
                                                                     FontStyle
                                                                         .italic,
-                                                                fontSize: 14,
+                                                                fontSize:
+                                                                    height *
+                                                                        0.016,
                                                               ),
                                                             ),
                                                           ],
@@ -291,7 +298,8 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.green,
-                                                              fontSize: 17,
+                                                              fontSize: height *
+                                                                  0.019,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),
@@ -309,88 +317,6 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                           //     ),
                                                           //   ),
                                                           // ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
-                                              Align(
-                                                alignment:
-                                                    Alignment.bottomCenter,
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 10.0),
-                                                  child: Column(
-                                                    children: <Widget>[
-                                                      Container(
-                                                        width: 150,
-                                                        child: RaisedButton(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .fromLTRB(
-                                                                  0, 0, 0, 0),
-                                                          textColor:
-                                                              Colors.white,
-                                                          color: Colors.red,
-                                                          onPressed: () async {
-                                                            Firestore.instance
-                                                                .collection(
-                                                                    "DoctorAppointment")
-                                                                .document(
-                                                                    item.docId)
-                                                                .updateData({
-                                                              'status':
-                                                                  'Cancelled'
-                                                            });
-                                                            Firestore.instance
-                                                                .collection(
-                                                                    'Doctors')
-                                                                .document(item
-                                                                    .doctorUID)
-                                                                .updateData({
-                                                              'TimeSlots':
-                                                                  FieldValue
-                                                                      .arrayRemove([
-                                                                {
-                                                                  'Available':
-                                                                      'No',
-                                                                  'From':
-                                                                      item.from,
-                                                                  'To': item.to
-                                                                }
-                                                              ])
-                                                            });
-                                                            Firestore.instance
-                                                                .collection(
-                                                                    'Doctors')
-                                                                .document(item
-                                                                    .doctorUID)
-                                                                .updateData({
-                                                              'TimeSlots':
-                                                                  FieldValue
-                                                                      .arrayUnion([
-                                                                {
-                                                                  'Available':
-                                                                      'Yes',
-                                                                  'From':
-                                                                      item.from,
-                                                                  'To': item.to
-                                                                }
-                                                              ])
-                                                            });
-                                                            getData();
-                                                          },
-                                                          child: Text(
-                                                            "Cancel",
-                                                            style: TextStyle(
-                                                              fontSize: 15,
-                                                            ),
-                                                          ),
                                                         ),
                                                       ),
                                                     ],
