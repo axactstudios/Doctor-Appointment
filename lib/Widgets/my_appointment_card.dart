@@ -14,6 +14,8 @@ class MyAppointmentCard extends StatefulWidget {
 class _MyAppointmentCardState extends State<MyAppointmentCard> {
   @override
   Widget build(BuildContext context) {
+    final pHeight = MediaQuery.of(context).size.height;
+    final pWidth = MediaQuery.of(context).size.width;
     print(widget.width);
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -49,7 +51,7 @@ class _MyAppointmentCardState extends State<MyAppointmentCard> {
                                     child: Icon(
                                       Icons.people,
                                       color: Colors.deepPurple,
-                                      size: 30,
+                                      size: pHeight * 0.025,
                                     ),
                                   ),
                                   SizedBox(
@@ -63,13 +65,13 @@ class _MyAppointmentCardState extends State<MyAppointmentCard> {
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.deepPurple,
-                                            fontSize: 20),
+                                            fontSize: pHeight * 0.02),
                                         children: <TextSpan>[
                                           TextSpan(
                                               text: '\n' + widget.dp.docDegree,
                                               style: TextStyle(
                                                   color: Colors.purple,
-                                                  fontSize: 15,
+                                                  fontSize: pHeight * 0.018,
                                                   fontWeight: FontWeight.bold)),
                                         ],
                                       ),
