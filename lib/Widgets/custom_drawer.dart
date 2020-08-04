@@ -138,6 +138,31 @@ class _CustomDrawerState extends State<CustomDrawer> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
               child: Text(
+                'New Requests',
+                style: TextStyle(
+                    fontSize: 24,
+                    fontFamily: 'nunito',
+                    fontWeight: FontWeight.w600),
+              ),
+            ),
+            onTap: () {
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => AppointmentMainPage(),
+              //     ));
+            },
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            height: 0.5,
+            color: Colors.black26,
+          ),
+          ListTile(
+            title: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
+              child: Text(
                 'Your Appointments',
                 style: TextStyle(
                     fontSize: 24,

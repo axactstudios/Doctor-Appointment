@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctorAppointment/Classes/Doc_data.dart';
+import 'package:doctorAppointment/Screens/ViewDetails.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:doctorAppointment/Widgets/custom_drawer.dart';
 import 'package:doctorAppointment/Widgets/appbar.dart';
+import 'TimeSlotsScreen.dart';
+import 'allAppointmentsMain.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -26,52 +29,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   final docdatabaseReference = Firestore.instance;
-  void getData() async {
-    //newdp.clear();
-    await docdatabaseReference
-        .collection("Doctors")
-        .getDocuments()
-        .then((QuerySnapshot snapshot) {
-      snapshot.documents.forEach((doc) async {
-        List<TimeSlots> timeArr = new List<TimeSlots>();
-        //Array of all TimeSlots
-
-        List.from(doc["TimeSlots"]).forEach((element) async {
-          TimeSlots newTime = TimeSlots(
-            from: element['From'],
-            to: element['To'],
-            available: element['Available'],
-          );
-
-          await timeArr.add(newTime);
-        });
-
-        if (doc["ID"] == user.uid) {
-          newdp.address = await doc['address'];
-          newdp.imageUrl = 'images/Doc2.png';
-          newdp.name = await doc['name'];
-          newdp.specs = await doc['specs'];
-          newdp.degree = await doc['degree'];
-          newdp.cost = await doc['cost'];
-          newdp.slots = timeArr;
-          newdp.docId = await doc['ID'];
-          print('---------DOC ID ${newdp.docId}------------');
-
-          print("doc added");
-        }
-      });
-    });
-    setState(() {
-      //print(docpros.length.toString());
-    });
-  }
 
   final databaseReference = Firestore.instance;
 
   @override
   void initState() {
     getUser();
-    getData();
+
     super.initState();
   }
 
@@ -81,127 +45,205 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       drawer: CustomDrawer(),
       backgroundColor: Color(0xFFEFF7F6),
       appBar: CustomAppBar(),
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    "Name:",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
-                    ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+              child: Container(
+                width: 300,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
-                  Text(
-                    newdp.name,
-                    style: TextStyle(color: Colors.grey),
+                  color: Colors.pink,
+                  elevation: 10,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          leading: Icon(Icons.person, size: 70),
+                          title: Text('View Profile',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                              )),
+                        ),
+                      ),
+                      ButtonTheme.bar(
+                        child: ButtonBar(
+                          children: <Widget>[
+                            FlatButton(
+                              child: const Text('Open',
+                                  style: TextStyle(color: Colors.white)),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ViewDetails(),
+                                    ));
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    "Degree:",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
-                    ),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+              child: Container(
+                width: 300,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
-                  Text(
-                    newdp.degree,
-                    style: TextStyle(color: Colors.grey),
+                  color: Colors.blue,
+                  elevation: 10,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          leading: Icon(Icons.notifications, size: 70),
+                          title: Text('New Requests',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                              )),
+                        ),
+                      ),
+                      ButtonTheme.bar(
+                        child: ButtonBar(
+                          children: <Widget>[
+                            FlatButton(
+                              child: const Text('Open',
+                                  style: TextStyle(color: Colors.white)),
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    "Specs:",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
-                    ),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+              child: Container(
+                width: 300,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
-                  Text(
-                    newdp.specs,
-                    style: TextStyle(color: Colors.grey),
+                  color: Colors.green,
+                  elevation: 10,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          leading: Icon(Icons.alarm, size: 70),
+                          title: Text('Bookings',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                              )),
+                        ),
+                      ),
+                      ButtonTheme.bar(
+                        child: ButtonBar(
+                          children: <Widget>[
+                            FlatButton(
+                              child: const Text('Open',
+                                  style: TextStyle(color: Colors.white)),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          AppointmentMainPage(),
+                                    ));
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    "Address:",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
-                    ),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+              child: Container(
+                width: 300,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
-                  Text(
-                    newdp.address,
-                    style: TextStyle(color: Colors.grey),
+                  color: Colors.red,
+                  elevation: 10,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          leading: Icon(Icons.update, size: 70),
+                          title: Text('Update Slots',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                              )),
+                        ),
+                      ),
+                      ButtonTheme.bar(
+                        child: ButtonBar(
+                          children: <Widget>[
+                            FlatButton(
+                              child: const Text('Open',
+                                  style: TextStyle(color: Colors.white)),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => TimeSlotsScreen(),
+                                    ));
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    "Cost:",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  Text(
-                    newdp.cost.toString(),
-                    style: TextStyle(color: Colors.grey),
-                  ),
-                ],
-              ),
+            SizedBox(
+              height: 10,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
