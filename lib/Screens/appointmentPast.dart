@@ -37,17 +37,7 @@ class _PastAppointmentState extends State<PastAppointment> {
         .getDocuments()
         .then((QuerySnapshot snapshot) {
       snapshot.documents.forEach((f) {
-        yourTime = TimeOfDay(
-            hour: int.parse(f['from'].split(":")[0]),
-            minute: int.parse(f['from'].split(":")[1]));
-        double _doubleyourTime =
-            yourTime.hour.toDouble() + (yourTime.minute.toDouble() / 60);
-        double _timeDiff = _doubleyourTime - _doubleNowTime;
-        int _hr = _timeDiff.truncate();
-        double _minute = (_timeDiff - _timeDiff.truncate()) * 60;
-        if (uid == f['doctorUID'] &&
-            (((_hr < 0) || (_hr == 0 && _minute < 0)) ||
-                f['status'] == "Cancelled")) {
+        if (uid == f['doctorUID'] && f['status'] != 'Booked') {
           fuAppList.add(AppointmentData(
               f['bookingTime'],
               f['doctorUID'],
@@ -63,7 +53,9 @@ class _PastAppointmentState extends State<PastAppointment> {
               f['patientUID'],
               f['from'],
               f['to'],
-              f.documentID));
+              f.documentID,
+              f['appointmentDate'],
+              f['bookingDate']));
           futAppointsList.add(MyAppointmentCard(
               AppointmentData(
                   f['bookingTime'],
@@ -80,7 +72,9 @@ class _PastAppointmentState extends State<PastAppointment> {
                   f['patientUID'],
                   f['from'],
                   f['to'],
-                  f.documentID),
+                  f.documentID,
+                  f['appointmentDate'],
+                  f['bookingDate']),
               width,
               height,
               context: context));
@@ -118,7 +112,7 @@ class _PastAppointmentState extends State<PastAppointment> {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    height: 200,
+                    height: height * 0.25,
                     width: double.maxFinite,
                     child: Card(
                       elevation: 5,
@@ -243,7 +237,8 @@ class _PastAppointmentState extends State<PastAppointment> {
                                                           text: '\nSlot: ' +
                                                               item.from +
                                                               ' - ' +
-                                                              item.to,
+                                                              item.to +
+                                                              '\nAppointment Date : ${item.appDate}',
                                                           style: TextStyle(
                                                               color: Colors
                                                                   .black87,
@@ -255,7 +250,8 @@ class _PastAppointmentState extends State<PastAppointment> {
                                                           children: <TextSpan>[
                                                             TextSpan(
                                                               text: '\nBooked at: ' +
-                                                                  item.bookingTime,
+                                                                  item.bookingTime +
+                                                                  '\nBooking Date : ${item.bookDate}',
                                                               style: TextStyle(
                                                                 color:
                                                                     Colors.grey,

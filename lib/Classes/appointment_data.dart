@@ -13,7 +13,9 @@ class AppointmentData {
       patientUID,
       from,
       to,
-      docId;
+      docId,
+      appDate,
+      bookDate;
 
   AppointmentData(
       this.bookingTime,
@@ -30,5 +32,7 @@ class AppointmentData {
       this.patientUID,
       this.from,
       this.to,
-      this.docId);
+      this.docId,
+      this.appDate,
+      this.bookDate);
 }
