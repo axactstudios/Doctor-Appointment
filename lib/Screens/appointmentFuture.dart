@@ -37,18 +37,10 @@ class _FutureAppointmentState extends State<FutureAppointment> {
         .getDocuments()
         .then((QuerySnapshot snapshot) {
       snapshot.documents.forEach((f) {
-        yourTime = TimeOfDay(
-            hour: int.parse(f['from'].split(":")[0]),
-            minute: int.parse(f['from'].split(":")[1]));
-        double _doubleyourTime =
-            yourTime.hour.toDouble() + (yourTime.minute.toDouble() / 60);
-        double _timeDiff = _doubleyourTime - _doubleNowTime;
-        int _hr = _timeDiff.truncate();
-        double _minute = (_timeDiff - _timeDiff.truncate()) * 60;
-
         if (uid == f['doctorUID'] &&
             f['status'] == "Booked" &&
-            ((_hr == 0 && _minute > 0) || (_hr > 0))) {
+            f['isConfirmed'] &&
+            f['isPaid']) {
           fuAppList.add(AppointmentData(
               f['bookingTime'],
               f['doctorUID'],
@@ -64,26 +56,29 @@ class _FutureAppointmentState extends State<FutureAppointment> {
               f['patientUID'],
               f['from'],
               f['to'],
-              f.documentID));
+              f.documentID,
+              f['appointmentDate'],
+              f['bookingDate']));
 
           futAppointsList.add(MyAppointmentCard(
               AppointmentData(
-                f['bookingTime'],
-                f['doctorUID'],
-                f['docName'],
-                f['docDegree'],
-                f['status'],
-                f['dogAge'],
-                f['dogBreed'],
-                f['dogName'],
-                f['ownerEmail'],
-                f['ownerName'],
-                f['ownerPhone'],
-                f['patientUID'],
-                f['from'],
-                f['to'],
-                f.documentID,
-              ),
+                  f['bookingTime'],
+                  f['doctorUID'],
+                  f['docName'],
+                  f['docDegree'],
+                  f['status'],
+                  f['dogAge'],
+                  f['dogBreed'],
+                  f['dogName'],
+                  f['ownerEmail'],
+                  f['ownerName'],
+                  f['ownerPhone'],
+                  f['patientUID'],
+                  f['from'],
+                  f['to'],
+                  f.documentID,
+                  f['appointmentDate'],
+                  f['bookingDate']),
               width,
               height,
               context: context));
@@ -121,7 +116,7 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    height: 200,
+                    height: height * 0.29,
                     width: double.maxFinite,
                     child: Card(
                       elevation: 5,
@@ -246,7 +241,8 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                           text: '\nSlot: ' +
                                                               item.from +
                                                               ' - ' +
-                                                              item.to,
+                                                              item.to +
+                                                              '\nAppointment Date : ${item.appDate}',
                                                           style: TextStyle(
                                                               color: Colors
                                                                   .black87,
@@ -258,7 +254,8 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                           children: <TextSpan>[
                                                             TextSpan(
                                                               text: '\nBooked at: ' +
-                                                                  item.bookingTime,
+                                                                  item.bookingTime +
+                                                                  '\nBooking Date : ${item.bookDate}',
                                                               style: TextStyle(
                                                                 color:
                                                                     Colors.grey,
@@ -325,6 +322,22 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                               ),
                                             ],
                                           ),
+                                          Center(
+                                            child: Container(
+                                              width: width * 0.5,
+                                              child: RaisedButton(
+                                                color: Colors.green,
+                                                onPressed: () {
+                                                  complete(item.docId);
+                                                },
+                                                child: Text(
+                                                  'Appointment Complete',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -344,5 +357,13 @@ class _FutureAppointmentState extends State<FutureAppointment> {
               child: Text('No appointments to show.'),
             ),
     );
+  }
+
+  void complete(String docId) {
+    Firestore.instance
+        .collection('DoctorAppointment')
+        .document(docId)
+        .updateData({'status': 'Completed'});
+    getData();
   }
 }

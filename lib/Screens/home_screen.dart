@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctorAppointment/Classes/Doc_data.dart';
 import 'package:doctorAppointment/Screens/DoctorBasicDetails.dart';
+import 'package:doctorAppointment/Screens/NewRequests.dart';
 import 'package:doctorAppointment/Screens/ViewDetails.dart';
 import 'package:doctorAppointment/style/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -113,6 +114,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               height: pHeight * 0.02,
             ),
             InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NewRequests(),
+                  ),
+                );
+              },
               child: Container(
                 width: pWidth * 0.85,
                 height: pHeight * 0.15,
