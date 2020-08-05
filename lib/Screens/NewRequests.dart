@@ -42,7 +42,7 @@ class _NewRequestsState extends State<NewRequests> {
         isConfirmed = await request['isConfirmed'];
         String status;
         status = await request['status'];
-        if (!isConfirmed && status != 'Rejected') {
+        if (!isConfirmed && status == 'Booked') {
           newReq.add(newRequest);
         }
       });
