@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         children: <Widget>[
                           Icon(
                             Icons.account_circle,
-                            size: pHeight * 0.07,
+                            size: pHeight * 0.05,
                             color: Colors.white,
                           ),
                           SizedBox(
@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             'View Profile',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: pHeight * 0.025,
+                              fontSize: pHeight * 0.02,
                             ),
                           ),
                         ],
@@ -147,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         children: <Widget>[
                           Icon(
                             Icons.notifications,
-                            size: pHeight * 0.07,
+                            size: pHeight * 0.05,
                             color: Colors.white,
                           ),
                           SizedBox(
@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             'New Requests',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: pHeight * 0.025,
+                              fontSize: pHeight * 0.02,
                             ),
                           ),
                         ],
@@ -204,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         children: <Widget>[
                           Icon(
                             Icons.alarm,
-                            size: pHeight * 0.07,
+                            size: pHeight * 0.05,
                             color: Colors.white,
                           ),
                           SizedBox(
@@ -214,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             'Bookings',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: pHeight * 0.025,
+                              fontSize: pHeight * 0.02,
                             ),
                           ),
                         ],
@@ -261,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         children: <Widget>[
                           Icon(
                             Icons.update,
-                            size: pHeight * 0.07,
+                            size: pHeight * 0.05,
                             color: Colors.white,
                           ),
                           SizedBox(
@@ -271,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             'Update Slots',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: pHeight * 0.025,
+                              fontSize: pHeight * 0.02,
                             ),
                           ),
                         ],
