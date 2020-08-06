@@ -116,7 +116,7 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    height: height * 0.29,
+                    height: height * 0.35,
                     width: double.maxFinite,
                     child: Card(
                       elevation: 5,
@@ -300,20 +300,6 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),
-                                                          // children: <TextSpan>[
-                                                          //   TextSpan(
-                                                          //     text: '\nBooked at: ' +
-                                                          //         item.bookingTime,
-                                                          //     style: TextStyle(
-                                                          //       color:
-                                                          //           Colors.grey,
-                                                          //       fontStyle:
-                                                          //           FontStyle
-                                                          //               .italic,
-                                                          //       fontSize: 14,
-                                                          //     ),
-                                                          //   ),
-                                                          // ],
                                                         ),
                                                       ),
                                                     ],
