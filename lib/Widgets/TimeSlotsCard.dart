@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctorAppointment/Classes/Doc_data.dart';
+import 'package:doctorAppointment/Screens/TimeSlotsScreen.dart';
 import 'package:doctorAppointment/style/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -59,16 +60,23 @@ class TimeSlotsCard extends StatelessWidget {
                           .collection('Doctors')
                           .document(user.uid)
                           .updateData({
-                            'TimeSlots': FieldValue.arrayRemove([
-                              {
-                                'Available': 'Yes',
-                                'From': timeSlot.from,
-                                'To': timeSlot.to
-                              }
-                            ])
-                          })
-                          .then((result) => {print('Removed')})
-                          .catchError((err) => print(err));
+                        'TimeSlots': FieldValue.arrayRemove([
+                          {
+                            'Available': 'Yes',
+                            'From': timeSlot.from,
+                            'To': timeSlot.to
+                          }
+                        ])
+                      }).then((result) {
+                        print('Removed');
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TimeSlotsScreen(),
+                          ),
+                        );
+                      }).catchError((err) => print(err));
                     },
                   )
                 ],
