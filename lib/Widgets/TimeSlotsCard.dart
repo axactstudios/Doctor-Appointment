@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctorAppointment/Classes/Doc_data.dart';
 import 'package:doctorAppointment/style/theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +25,7 @@ class TimeSlotsCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           gradient: new LinearGradient(
-            colors: [MyColors.loginGradientStart, MyColors.loginGradientEnd],
+            colors: [MyColors.loginGradientEnd, MyColors.loginGradientStart],
           ),
         ),
         padding: const EdgeInsets.only(top: 5.0),
@@ -32,12 +34,44 @@ class TimeSlotsCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'Slot ${index + 1}',
-                style: TextStyle(
-                    fontFamily: 'Cabin',
-                    fontSize: pHeight * 0.025,
-                    color: Colors.white),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  SizedBox(
+                    width: pWidth * 0.12,
+                  ),
+                  Text(
+                    'Slot ${index + 1}',
+                    style: TextStyle(
+                        fontFamily: 'Cabin',
+                        fontSize: pHeight * 0.025,
+                        color: Colors.white),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.remove_circle,
+                      color: Colors.red,
+                    ),
+                    onPressed: () async {
+                      FirebaseUser user =
+                          await FirebaseAuth.instance.currentUser();
+                      await Firestore.instance
+                          .collection('Doctors')
+                          .document(user.uid)
+                          .updateData({
+                            'TimeSlots': FieldValue.arrayRemove([
+                              {
+                                'Available': 'Yes',
+                                'From': timeSlot.from,
+                                'To': timeSlot.to
+                              }
+                            ])
+                          })
+                          .then((result) => {print('Removed')})
+                          .catchError((err) => print(err));
+                    },
+                  )
+                ],
               ),
               SizedBox(
                 height: pHeight * 0.01,
@@ -56,6 +90,9 @@ class TimeSlotsCard extends StatelessWidget {
                     fontSize: pHeight * 0.022,
                     color: Colors.white),
               ),
+              SizedBox(
+                height: pHeight * 0.01,
+              )
               //Text(to),
               // FlatButton(
               //     child: Text("See More"),

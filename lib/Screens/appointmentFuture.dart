@@ -157,7 +157,7 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                 alignment: Alignment.centerLeft,
                                                 child: RichText(
                                                   text: TextSpan(
-                                                    text: item.docName,
+                                                    text: item.ownerName,
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -168,7 +168,7 @@ class _FutureAppointmentState extends State<FutureAppointment> {
                                                     children: <TextSpan>[
                                                       TextSpan(
                                                           text: '\n' +
-                                                              item.docDegree,
+                                                              item.ownerPhone,
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.purple,

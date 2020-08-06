@@ -238,7 +238,8 @@ class _NewRequestsState extends State<NewRequests> {
                     ),
                   ),
                 );
-              }),
+              },
+            ),
     );
   }
 }

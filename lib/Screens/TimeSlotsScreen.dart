@@ -9,6 +9,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class TimeSlotsScreen extends StatefulWidget {
+  TimeSlotsScreen();
+
   @override
   _TimeSlotsScreenState createState() => _TimeSlotsScreenState();
 }
@@ -165,12 +167,12 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
         elevation: 8.0,
         shape: CircleBorder(),
         children: [
-          SpeedDialChild(
-              child: Icon(Icons.remove),
-              backgroundColor: Colors.red,
-              label: 'Remove',
-              labelStyle: TextStyle(fontSize: 18.0),
-              onTap: () => _showRemDialog()),
+//          SpeedDialChild(
+//              child: Icon(Icons.remove),
+//              backgroundColor: Colors.red,
+//              label: 'Remove',
+//              labelStyle: TextStyle(fontSize: 18.0),
+//              onTap: () => _showRemDialog()),
           SpeedDialChild(
             child: Icon(Icons.add),
             backgroundColor: Colors.blue,
