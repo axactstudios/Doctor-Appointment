@@ -1,3 +1,4 @@
+import 'package:doctorAppointment/style/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
@@ -53,7 +54,7 @@ class _AppointmentMainPageState extends State<AppointmentMainPage> {
           child: Container(
         height: double.infinity,
         child: GFTabs(
-          tabBarColor: Color(0xFFf7418c),
+          tabBarColor: MyColors.loginGradientEnd,
           tabBarHeight: 70,
           indicatorColor: Colors.white,
 
