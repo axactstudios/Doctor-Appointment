@@ -87,7 +87,9 @@ class _ViewDetailsState extends State<ViewDetails>
         height: pHeight,
         width: pWidth,
         child: newdp.name == null
-            ? CircularProgressIndicator()
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
             : Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(

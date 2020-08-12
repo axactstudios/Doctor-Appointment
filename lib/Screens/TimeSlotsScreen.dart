@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:doctorAppointment/Classes/Doc_data.dart';
 import 'package:doctorAppointment/Widgets/TimeSlotsCard.dart';
 import 'package:doctorAppointment/Widgets/appbar.dart';
@@ -195,10 +196,13 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
           child: Column(
             children: <Widget>[
               Text("Please fill the details to remove a slot"),
-              TextField(
-                autofocus: true,
-                decoration: InputDecoration(labelText: 'From'),
-                controller: taskFromInputController,
+              Row(
+                children: <Widget>[
+                  Text("From"),
+                  DateTimePicker(
+                    type: DateTimePickerType.time,
+                  ),
+                ],
               ),
               TextField(
                 decoration: InputDecoration(labelText: 'To'),
@@ -248,6 +252,8 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
     );
   }
 
+  String slotFrom, slotTo;
+
   _showDialog() async {
     await showDialog<String>(
       context: context,
@@ -255,17 +261,45 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
         contentPadding: const EdgeInsets.all(16.0),
         content: Container(
           height: 170,
+          width: 200,
           child: Column(
             children: <Widget>[
               Text("Please fill the details for a new slot"),
-              TextField(
-                autofocus: true,
-                decoration: InputDecoration(labelText: 'From'),
-                controller: taskFromInputController,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    width: 200,
+                    child: DateTimePicker(
+                      timeLabelText: 'From',
+                      type: DateTimePickerType.time,
+                      onChanged: (value) {
+                        setState(() {
+                          slotFrom = value;
+                          print(slotFrom);
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
-              TextField(
-                decoration: InputDecoration(labelText: 'To'),
-                controller: taskToInputController,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                    width: 200,
+                    child: DateTimePicker(
+                      timeLabelText: 'To',
+                      type: DateTimePickerType.time,
+                      onChanged: (value) {
+                        setState(() {
+                          slotTo = value;
+                          print(slotTo);
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -281,30 +315,24 @@ class _TimeSlotsScreenState extends State<TimeSlotsScreen>
           FlatButton(
               child: Text('Add'),
               onPressed: () async {
-                if (taskFromInputController.text.isNotEmpty &&
-                    taskToInputController.text.isNotEmpty) {
-                  await Firestore.instance
-                      .collection('Doctors')
-                      .document(user.uid)
-                      .updateData({
-                        'TimeSlots': FieldValue.arrayUnion([
-                          {
-                            'Available': 'Yes',
-                            'From': taskFromInputController.text,
-                            'To': taskToInputController.text
-                          }
-                        ])
-                      })
-                      .then((result) => {
-                            Navigator.pop(context),
-                            taskFromInputController.clear(),
-                            taskToInputController.clear(),
-                          })
-                      .catchError((err) => print(err));
-                  setState(() {
-                    initState();
-                  });
-                }
+                print('$slotFrom to $slotTo');
+                await Firestore.instance
+                    .collection('Doctors')
+                    .document(user.uid)
+                    .updateData({
+                      'TimeSlots': FieldValue.arrayUnion([
+                        {'Available': 'Yes', 'From': slotFrom, 'To': slotTo}
+                      ])
+                    })
+                    .then((result) => {
+                          Navigator.pop(context),
+                          taskFromInputController.clear(),
+                          taskToInputController.clear(),
+                        })
+                    .catchError((err) => print(err));
+                setState(() {
+                  initState();
+                });
               })
         ],
       ),
