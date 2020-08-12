@@ -57,6 +57,7 @@ dependencies:
   cached_network_image: ^2.2.0+1
   flutter_form_bloc: ^0.15.0
   flutter_speed_dial: ^1.2.5
+  date_time_picker: ^1.0.0
 
 dev_dependencies:
   flutter_test:
